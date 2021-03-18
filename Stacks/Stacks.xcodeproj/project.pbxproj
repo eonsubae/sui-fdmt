@@ -11,6 +11,8 @@
 		42E4089A2602455900F012BE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E408992602455900F012BE /* ContentView.swift */; };
 		42E4089C2602455D00F012BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42E4089B2602455D00F012BE /* Assets.xcassets */; };
 		42E4089F2602455D00F012BE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42E4089E2602455D00F012BE /* Preview Assets.xcassets */; };
+		42F120622603925700EAB332 /* MeowMixHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F120612603925700EAB332 /* MeowMixHeader.swift */; };
+		42F120662603940400EAB332 /* MeowMix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F120652603940400EAB332 /* MeowMix.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +22,8 @@
 		42E4089B2602455D00F012BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		42E4089E2602455D00F012BE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		42E408A02602455D00F012BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		42F120612603925700EAB332 /* MeowMixHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeowMixHeader.swift; sourceTree = "<group>"; };
+		42F120652603940400EAB332 /* MeowMix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeowMix.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,9 +58,11 @@
 			children = (
 				42E408972602455900F012BE /* StacksApp.swift */,
 				42E408992602455900F012BE /* ContentView.swift */,
+				42F120612603925700EAB332 /* MeowMixHeader.swift */,
 				42E4089B2602455D00F012BE /* Assets.xcassets */,
 				42E408A02602455D00F012BE /* Info.plist */,
 				42E4089D2602455D00F012BE /* Preview Content */,
+				42F120652603940400EAB332 /* MeowMix.swift */,
 			);
 			path = Stacks;
 			sourceTree = "<group>";
@@ -139,6 +145,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				42E4089A2602455900F012BE /* ContentView.swift in Sources */,
+				42F120622603925700EAB332 /* MeowMixHeader.swift in Sources */,
+				42F120662603940400EAB332 /* MeowMix.swift in Sources */,
 				42E408982602455900F012BE /* StacksApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
