@@ -2,6 +2,7 @@ import SwiftUI
 
 struct DetailView: View {
   let artwork: Artwork
+  @State private var showMap = false
   
   var body: some View {
     VStack {
@@ -10,13 +11,16 @@ struct DetailView: View {
         .multilineTextAlignment(.center)
         .lineLimit(3)
       
-      Button(action: {  }) {
+      Button(action: { showMap = true }) {
         HStack(alignment: .firstTextBaseline) {
           Image(systemName: "mappin.and.ellipse")
           
           Text(artwork.locationName)
             .font(.headline)
         }
+      }
+      .fullScreenCover(isPresented: $showMap) {
+        LocationMap(artwork: artwork, showModal: $showMap)
       }
       
       Text("Artist: \(artwork.artist)")

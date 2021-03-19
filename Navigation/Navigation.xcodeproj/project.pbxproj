@@ -115,7 +115,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4247690D26041ED400CA5FC6 /* Build configuration list for PBXProject "Navigation" */;
+			buildConfigurationList = 4247690D26041ED400CA5FC6 /* Build configuration list for PBXProject "NavigationBasic" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -285,6 +285,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Navigation/Preview Content\"";
+				DEVELOPMENT_TEAM = 6F24R48AYW;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -306,6 +307,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Navigation/Preview Content\"";
+				DEVELOPMENT_TEAM = 6F24R48AYW;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -323,7 +325,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4247690D26041ED400CA5FC6 /* Build configuration list for PBXProject "Navigation" */ = {
+		4247690D26041ED400CA5FC6 /* Build configuration list for PBXProject "NavigationBasic" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4247691F26041ED600CA5FC6 /* Debug */,
