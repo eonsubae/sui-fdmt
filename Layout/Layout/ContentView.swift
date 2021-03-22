@@ -2,8 +2,8 @@ import SwiftUI
 
 struct ContentView: View {
   var body: some View {
-    ScrollView {
-        LazyVStack {
+//    ScrollView {
+        List {
             let formatter: DateFormatter = {
               let formatter = DateFormatter()
               formatter.timeStyle = .medium
@@ -16,7 +16,7 @@ struct ContentView: View {
                 subgenre.view
             }
         }
-    }
+//    }
   }
 }
 
