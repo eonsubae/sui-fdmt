@@ -1,23 +1,41 @@
 import SwiftUI
 
 struct ContentView: View {
-  var body: some View {
-//    ScrollView {
-        List {
-            let formatter: DateFormatter = {
-              let formatter = DateFormatter()
-              formatter.timeStyle = .medium
-              return formatter
-            } ()
-            
-            ForEach(Genre.list.flatMap(\.subgenres)) { subgenre in
-                Text(formatter.string(from: Date()))
-                
-                subgenre.view
+    @State private var selectedGenre = Genre.list.first
+
+    var body: some View {
+        NavigationView {
+            ScrollView {
+                ScrollViewReader { proxy in
+                    LazyVStack {
+                        ForEach(Genre.list) { genre in
+                            genre.subgenres.randomElement()!.view
+                                .id(genre.id)
+                        }
+                        .onChange(of: selectedGenre) { genre in
+                            selectedGenre = nil
+                            
+                            withAnimation {
+                                proxy.scrollTo(genre)
+                            }
+                        }
+                    }
+                }
+            }
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem {
+                    Menu("Genre") {
+                        ForEach(Genre.list) { genre in
+                            Button(genre.name) {
+                                selectedGenre = genre
+                            }
+                        }
+                    }
+                }
             }
         }
-//    }
-  }
+    }
 }
 
 private extension Genre.Subgenre {
