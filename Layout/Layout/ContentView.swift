@@ -7,21 +7,37 @@ struct ContentView: View {
         NavigationView {
             ScrollView {
                 ScrollViewReader { proxy in
-                    LazyVStack {
+                    let horizontalPadding: CGFloat = 40
+                    
+                    LazyVStack(alignment: .leading) {
                         ForEach(Genre.list) { genre in
-                            genre.subgenres.randomElement()!.view
-                                .id(genre.id)
-                        }
-                        .onChange(of: selectedGenre) { genre in
-                            selectedGenre = nil
+                            Text(genre.name)
+                                .fontWeight(.heavy)
+                                .padding(.leading, horizontalPadding)
+                                .id(genre)
                             
-                            withAnimation {
-                                proxy.scrollTo(genre)
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                LazyHStack(spacing: 20) {
+                                    ForEach(genre.subgenres, content: \.view)
+                                }
+                                .padding(.leading, horizontalPadding)
                             }
+                            
+                            Divider()
+                                .padding(.horizontal, horizontalPadding)
+                                .padding(.top)
                         }
+                    }
+                    .onChange(of: selectedGenre) { genre in
+                        withAnimation {
+                            proxy.scrollTo(genre, anchor: .top)
+                        }
+                        
+                        selectedGenre = nil
                     }
                 }
             }
+            .padding(.top)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem {
