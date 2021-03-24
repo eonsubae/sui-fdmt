@@ -3,19 +3,35 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         ScrollView(.horizontal) {
-            LazyHGrid(
-              rows: [
-                .init(.fixed(300), spacing: 30),
-                .init(.flexible(maximum: 200), spacing: 30),
-                .init(.adaptive(minimum: 30), spacing: 30),
-              ]
-            ) {
-                ForEach(
-                    Genre.list.randomElement()!.subgenres.shuffled().prefix(20),
-                    content: \.view
-                )
+            LazyHStack(pinnedViews: [.sectionHeaders, .sectionFooters]) {
+                ForEach(Genre.list) { genre in
+                    Section(
+                      header: genre.header,
+                      footer: genre.header
+                    ) {
+                        ForEach(genre.subgenres.prefix(5)) {
+                            $0.view.frame(width: 125)
+                        }
+                    }
+                }
             }
-        }.padding(.horizontal)
+        }
+    }
+}
+
+private extension Genre {
+    var header: some SwiftUI.View {
+        HStack {
+            Text(name)
+                .font(.title2)
+                .fontWeight(.bold)
+                .padding(.leading)
+                .padding(.vertical, 8)
+            
+            Spacer()
+        }
+        .background(UIBlurEffect.View(blurStyle: .systemThinMaterial))
+        .frame(maxWidth: .infinity)
     }
 }
 
@@ -32,7 +48,7 @@ private extension Genre.Subgenre {
           startPoint: .topLeading, endPoint: .bottomTrailing
         )
       )
-      .frame(width: 125)
+      .frame(width: 125, height: 125)
       .overlay(
         Image("Genre/\(Int.random(in: 1...92))")
           .resizable()
