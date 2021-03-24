@@ -1,56 +1,21 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var selectedGenre = Genre.list.first
-
     var body: some View {
-        NavigationView {
-            ScrollView {
-                ScrollViewReader { proxy in
-                    let horizontalPadding: CGFloat = 40
-                    
-                    LazyVStack(alignment: .leading) {
-                        ForEach(Genre.list) { genre in
-                            Text(genre.name)
-                                .fontWeight(.heavy)
-                                .padding(.leading, horizontalPadding)
-                                .id(genre)
-                            
-                            ScrollView(.horizontal, showsIndicators: false) {
-                                LazyHStack(spacing: 20) {
-                                    ForEach(genre.subgenres, content: \.view)
-                                }
-                                .padding(.leading, horizontalPadding)
-                            }
-                            
-                            Divider()
-                                .padding(.horizontal, horizontalPadding)
-                                .padding(.top)
-                        }
-                    }
-                    .onChange(of: selectedGenre) { genre in
-                        withAnimation {
-                            proxy.scrollTo(genre, anchor: .top)
-                        }
-                        
-                        selectedGenre = nil
-                    }
-                }
+        ScrollView(.horizontal) {
+            LazyHGrid(
+              rows: [
+                .init(.fixed(300), spacing: 30),
+                .init(.flexible(maximum: 200), spacing: 30),
+                .init(.adaptive(minimum: 30), spacing: 30),
+              ]
+            ) {
+                ForEach(
+                    Genre.list.randomElement()!.subgenres.shuffled().prefix(20),
+                    content: \.view
+                )
             }
-            .padding(.top)
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem {
-                    Menu("Genre") {
-                        ForEach(Genre.list) { genre in
-                            Button(genre.name) {
-                                selectedGenre = genre
-                            }
-                        }
-                    }
-                }
-            }
-        }
+        }.padding(.horizontal)
     }
 }
 
@@ -67,7 +32,7 @@ private extension Genre.Subgenre {
           startPoint: .topLeading, endPoint: .bottomTrailing
         )
       )
-      .frame(width: 125, height: 125)
+      .frame(width: 125)
       .overlay(
         Image("Genre/\(Int.random(in: 1...92))")
           .resizable()
