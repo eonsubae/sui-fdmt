@@ -1,16 +1,36 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var selectedGenre = Genre.list.first
+    
     var body: some View {
-        ScrollView(.horizontal) {
-            LazyHStack(pinnedViews: [.sectionHeaders, .sectionFooters]) {
-                ForEach(Genre.list) { genre in
-                    Section(
-                      header: genre.header,
-                      footer: genre.header
-                    ) {
-                        ForEach(genre.subgenres.prefix(5)) {
-                            $0.view.frame(width: 125)
+        NavigationView {
+            ScrollView {
+                ScrollViewReader { scrollProxy in
+                    LazyVStack(pinnedViews: .sectionHeaders) {
+                        ForEach(Genre.list) { genre in
+                            Section(header: genre.header.id(genre)) {
+                                LazyVGrid(columns: [.init(.adaptive(minimum: 150))]) {
+                                    ForEach(genre.subgenres, content: \.view)
+                                }
+                                .padding(.horizontal)
+                            }
+                        }
+                    }
+                    .onChange(of: selectedGenre) { genre in
+                        scrollProxy.scrollTo(selectedGenre, anchor: .top)
+                        selectedGenre = nil
+                    }
+                }
+            }
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem {
+                    Menu("Genre") {
+                        ForEach(Genre.list) { genre in
+                            Button(genre.name) {
+                                selectedGenre = genre
+                            }
                         }
                     }
                 }

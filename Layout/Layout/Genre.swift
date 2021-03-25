@@ -10,10 +10,7 @@ struct Genre {
   let subgenres: [Subgenre]
 }
 
-// MARK: - internal
 extension Genre {
-  /// From [Wikipedia's List of popular music genres](https://en.wikipedia.org/wiki/List_of_popular_music_genres).
-  /// - Copyright: [Creative Commons Attribution-ShareAlike](https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License)
   static let list = [
     ( name: "Blues",
       subgenres: [
