@@ -2,60 +2,47 @@
 //  ContentView.swift
 //  CustomAlignment
 //
-//  Created by KRENGLSSEAN on 2021/03/28.
+//  Created by KRENGLSSEAN on 2021/04/04.
 //
 
 import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack(alignment: .customCenter) {
-            HStack {
-                ScaledImage("Trig")
-                ScaledImage("Patterns")
-                Text("Learn SwiftUI layout!")
-                    .alignmentGuide(.customCenter) { $0[.leading] }
+      List(Razémon.all, id: \.name) { razémon in
+        HStack(alignment: .razémon) {
+          Image(razémon.name)
+            .resizable()
+            .scaledToFit()
+            .frame(width: 120)
+            .alignmentGuide(.razémon) {
+                razémon.eyePosition * $0[.bottom]
             }
-            
-            HStack {
-                Text("Help others learn it too!")
-                    .alignmentGuide(.customCenter) { $0[.trailing] }
-                ScaledImage("Hearts")
-            }
-                
-            HStack {
-                ScaledImage("Rocket")
-                Text("Then let's all make some awesome apps!")
-                    .multilineTextAlignment(.center)
-                ScaledImage("Party")
-            }
+
+          VStack(alignment: .leading, spacing: 15) {
+            Text(razémon.name)
+              .fontWeight(.heavy)
+
+            Text(razémon.description)
+                .alignmentGuide(.razémon, computeValue: Razémon.defaultValue)
+
+            Text("💎 \(razémon.cost)")
+              .fontWeight(.semibold)
+              .foregroundColor(.blue)
+          }
         }
-        .frame(width: 250, height: 250)
+      }
     }
 }
 
-extension HorizontalAlignment {
-    enum CustomCenter: AlignmentID {
-        static func defaultValue(in context: ViewDimensions) -> CGFloat {
-            context[HorizontalAlignment.center]
-        }
+extension Razémon: AlignmentID {
+    static func defaultValue(in context: ViewDimensions) -> CGFloat {
+        context[.top]
     }
-    
-    static let customCenter = Self(CustomCenter.self)
 }
 
-struct ScaledImage: View {
-  let name: String
-
-  init(_ name: String) {
-    self.name = name
-  }
-
-  var body: some View {
-    Image(name)
-      .resizable()
-      .scaledToFit()
-  }
+extension VerticalAlignment {
+    static let razémon = Self(Razémon.self)
 }
 
 struct ContentView_Previews: PreviewProvider {
